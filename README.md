@@ -1,5 +1,7 @@
 Microservicio SOAP para Gestión de Actores - Sakila 1.0.0
+
 Descripción General
+
 Este proyecto implementa un microservicio independiente que expone los datos de la tabla actor de Sakila a través de un servicio web SOAP. El microservicio se encarga de:
 •	Obtener la lista completa de actores desde la base de datos Sakila a través de un endpoint REST interno.
 •	Exponer un servicio SOAP con un contrato formal (WSDL) que permite consumir operaciones para:
