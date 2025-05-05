@@ -88,6 +88,7 @@ La respuesta será un XML conteniendo la lista de actores, por ejemplo:
 
 ESTRUCTURA DEL PROYECTO:
 
+
 ├── src/
 │   ├── config/
 │   │   └── db.js           # Configuración de conexión a MySQL
@@ -103,15 +104,18 @@ ESTRUCTURA DEL PROYECTO:
 ├── package.json          # Dependencias y scripts del proyecto
 └── README.md             # Documentación del proyecto
 
+
 Consideraciones
 •	El microservicio utiliza un endpoint REST interno para obtener datos de la tabla actor de Sakila, el cual es consumido por el servicio SOAP.
 •	Se implementa manejo automático de errores para asegurar que tanto la API REST como el servicio SOAP respondan de forma clara en caso de problemas de comunicación o de base de datos.
 •	La separación de módulos (config, controladores, rutas y SOAP) permite la escalabilidad y el mantenimiento del proyecto, facilitando futuras extensiones.
 •	El contrato WSDL garantiza la interoperabilidad y permite que cualquier consumidor del servicio SOAP conozca la estructura exacta de las solicitudes y respuestas.
+
 Pruebas
 •	Prueba Manual:
 o	Se realizaron consultas desde Postman para verificar la respuesta correcta de la API REST en http://localhost:3001/api/actors.
 o	Se realizaron pruebas SOAP enviando solicitudes XML (como las indicadas arriba) a http://localhost:3002/wsdl y se validó la estructura y contenido de las respuestas.
+
 
 Autor
 Proyecto realizado para el cumplimiento de los requisitos de integración de microservicios
