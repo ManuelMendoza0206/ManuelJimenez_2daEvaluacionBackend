@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions 
+  name="ActorService"
+  targetNamespace="http://example.com/ActorService"
+  xmlns:tns="http://example.com/ActorService"
+  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+
+  <types>
+    <xsd:schema targetNamespace="http://example.com/ActorService">
+
+      <xsd:complexType name="actor">
+        <xsd:sequence>
+          <xsd:element name="actor_id" type="xsd:int"/>
+          <xsd:element name="first_name" type="xsd:string"/>
+          <xsd:element name="last_name" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      
+      <xsd:complexType name="ActorList">
+        <xsd:sequence>
+          <xsd:element name="actor" type="tns:actor" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      
+
+      <xsd:complexType name="ActorStats">
+        <xsd:sequence>
+          <xsd:element name="total" type="xsd:int"/>
+          <xsd:element name="minActorId" type="xsd:int"/>
+          <xsd:element name="maxActorId" type="xsd:int"/>
+          <xsd:element name="avgActorId" type="xsd:float"/>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </types>
+
+
+  <message name="getAllActorsRequest">
+    <part name="request" type="xsd:string"/>
+  </message>
+  <message name="getAllActorsResponse">
+    <part name="response" element="tns:ActorList"/>
+  </message>
+
+  <message name="getActorStatsRequest">
+    <part name="request" type="xsd:string"/>
+  </message>
+  <message name="getActorStatsResponse">
+    <part name="response" element="tns:ActorStats"/>
+  </message>
+
+
+  <portType name="ActorPortType">
+    <operation name="getAllActors">
+      <input message="tns:getAllActorsRequest"/>
+      <output message="tns:getAllActorsResponse"/>
+    </operation>
+    <operation name="getActorStats">
+      <input message="tns:getActorStatsRequest"/>
+      <output message="tns:getActorStatsResponse"/>
+    </operation>
+  </portType>
+
+
+  <binding name="ActorBinding" type="tns:ActorPortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="getAllActors">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="getActorStats">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+
+
+  <service name="ActorService">
+    <port name="ActorPort" binding="tns:ActorBinding">
+      <soap:address location="http://localhost:3002/wsdl"/>
+    </port>
+  </service>
+</definitions>
